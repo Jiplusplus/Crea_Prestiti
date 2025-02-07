@@ -36,7 +36,7 @@ public class Prestito {
 			 elencoCodAna=visualizzaCodiciAna(st,elencoCodAna);
 			 elencoCodAnaClientiScelti=richiestaCodici(elencoCodAna,elencoCodAnaClientiScelti);
 			 visualizzaClientiScelti(st, elencoCodAnaClientiScelti);
-			 
+			 if (elencoCodAna.size() >= 5) {
 			 while(ripeti) {
 				 System.out.println("VUOI CONFERMARE?");
 				 scelta=scanner.nextLine();
@@ -70,7 +70,10 @@ public class Prestito {
 				 return true;
 			 }
 			 
-		
+			 } else {
+				 System.out.println("Non ci sono abbastanza clienti");
+				 return false;
+				 }
 		 /*}catch (SQLException e) {
 			 
 				e.printStackTrace();

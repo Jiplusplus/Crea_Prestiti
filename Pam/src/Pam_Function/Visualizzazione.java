@@ -27,9 +27,13 @@ public static boolean stampaClienti() throws SQLException {
 			boolean ripeti=true;
 			String str="";
 			
-			str = "SELECT a.ANA_NOME, a.ANA_COGNOME, COUNT(c.CTR_COD_PRESTITO) AS numeroPrestiti, AVG(p.CTRP_IMPORTO_RATA) AS mediaRata, AVG(p.CTRP_QUOTA_INTERESSI) AS mediaInteressi, AVG(p.CTRP_QUOTA_CAPITALE) AS mediaCapitale FROM jac_ana_base a, jac_ctr_base c, jac_ctr_pam p WHERE a.ANA_COD_ANAGRAFICO = c.CTR_COD_ANAGRAFICO\r\n"
-					+ "AND c.CTR_COD_PRESTITO = p.CTRP_COD_PRESTITO"
-					+ "";
+			str = "SELECT a.ANA_NOME, a.ANA_COGNOME, COUNT(c.CTR_COD_PRESTITO) AS numeroPrestiti, "
+					+ "AVG(p.CTRP_IMPORTO_RATA) AS mediaRata, AVG(p.CTRP_QUOTA_INTERESSI) AS mediaInteressi, "
+					+ "AVG(p.CTRP_QUOTA_CAPITALE) AS mediaCapitale "
+					+ "FROM jac_ana_base a "
+					+ "JOIN jac_ctr_base c ON a.ANA_COD_ANAGRAFICO = c.CTR_COD_ANAGRAFICO "
+					+ "JOIN jac_ctr_pam p ON c.CTR_COD_PRESTITO = p.CTRP_COD_PRESTITO "
+					+ "GROUP BY a.ANA_COD_ANAGRAFICO";
 			
 			ResultSet rs = st.executeQuery(str);
 	        
